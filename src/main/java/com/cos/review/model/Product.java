@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 import org.hibernate.annotations.CreationTimestamp;
 
@@ -25,6 +27,7 @@ import lombok.NoArgsConstructor;
 public class Product {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(length = 1000)
 	private int id;
 	private String blogUrl;
 	private String title;
@@ -32,6 +35,10 @@ public class Product {
 	// @Lob 
 	private String thumnail;
 	private String day;
+	
+	@ManyToOne
+	@JoinColumn(name = "keywordId")
+	private SearchKeyword keyword;
 	
 	@CreationTimestamp
 	private Timestamp createDate;
@@ -60,6 +67,8 @@ public class Product {
 		this.createDate = createDate;
 	}
 	
-	
+	public void setKeyword(SearchKeyword keyword) {
+		this.keyword = keyword;
+	}
 	
 }

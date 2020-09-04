@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<title>제품리뷰 관리자페이지</title>
+</head>
+<body>
+<ul>
+	<li><a href="/craw/list">크롤링키워드목록</a></li>
+	<li><a href="/craw/naver">전체크롤링</a></li>
+	<li><a href="/craw/clear">크롤링데이터 정리</a></li>
+</ul>
+<h1>네이버 크롤링 키워드 등록 페이지</h1>
+<hr/>
+<h3>현재 키워드</h3>
+<ol>
+	{{#keywords}}
+	<li>{{keyword}} <button onclick="deleteKeyword({{id}})">삭제</button></li>
+	{{/keywords}}
+</ol>
+<hr/>
+<form action="/craw/keyword/proc" method="post">
+	<input type="text" name="keyword" placeholder="키워드" style="margin-bottom:5px"/><br/>
+	<button>키워드 등록</button>
+</form>
+<script>
+	function deleteKeyword(id){
+		fetch("/craw/keyword/delete/"+id, {
+			method: "delete"
+		}).then(function(resp){
+			return resp.text();
+		}).then(function(resp){
+			alert("키워드 삭제 성공");
+			location.reload();
+		});
+	}
+</script>
+</body>
+</html> 
