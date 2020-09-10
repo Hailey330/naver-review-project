@@ -41,4 +41,9 @@ public class BatchCrawNaver {
 		}
 		System.out.println("=============자동 크롤링 배치 종료===========");
 	}
+
+	//@Scheduled(fixedDelay = 1000) // 1초 마다 실행
+	public void scheduleFixedRateTask() {
+		System.out.println("1초 마다 실행");
+	}
 }

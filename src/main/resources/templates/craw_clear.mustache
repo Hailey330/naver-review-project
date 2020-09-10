@@ -13,7 +13,43 @@
 </ul>
 <h1>크롤링 데이터 정리하기</h1>
 <hr/>
-
+{{#allKeyword}}
+	<a href="/craw/clear/{{id}}">{{keyword}}</a>
+{{/allKeyword}}
+<hr/>
+<a href="/craw/clear/{{keywordId}}?page={{prev}}">이전</a>
+<a href="/craw/clear/{{keywordId}}?page={{next}}">다음</a>
+<br/><br/>
+<table border="1" >
+	<tr>
+		<th>번호</th>
+		<th>사진</th>
+		<th>제목</th>
+		<th>주소</th>
+		<th></th>
+	</tr>
+	{{#products}}
+	<tr id="product-{{id}}">
+		<td width="5%">{{id}}</td>
+		<td width="5%"><img src="{{thumnail}}" width="100px" height="100px" /></td>
+		<td width="40%">{{title}}</td>
+		<td width="40%"><a href="{{blogUrl}}">{{blogUrl}}</a></td>
+		<td width="10%"><button onclick="deleteById({{id}})">삭제</button></td>
+	</tr>
+	{{/products}}
+</table>
+<script>
+	function deleteById(id){
+		fetch("/craw/product/delete/"+id, {
+			method: "delete"
+		}).then(function(resp){
+			return resp.text();
+		}).then(function(resp){
+			alert("삭제 성공");
+			$("#product-"+id).remove();
+		});
+	}
+</script>
 
 </body>
 </html> 
