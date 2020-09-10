@@ -102,7 +102,7 @@ public class CrawNaverController {
 		}
 
 		productRepository.saveAll(products);
-		return "성공";
+		return "크롤링 데이터 저장 성공";
 	}
 
 	@PostMapping("/craw/keyword/proc")

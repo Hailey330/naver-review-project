@@ -1,32 +1,26 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<title>제품리뷰 관리자페이지</title>
-</head>
-<body>
-<ul>
-	<li><a href="/craw/list">크롤링키워드목록</a></li>
-	<li><a href="/craw/naver">전체크롤링</a></li>
-	<li><a href="/craw/clear">크롤링데이터 정리</a></li>
-</ul>
-<h1>크롤링 데이터 정리하기</h1>
+{{>nav}}
+
+<br/><br/>
+<div class="container">
+<h2>크롤링 데이터 정리하기</h2>
+<p><code>크롤링 데이터를 삭제할 수 있습니다.</code></p>
 <hr/>
 {{#allKeyword}}
 	<a href="/craw/clear/{{id}}">{{keyword}}</a>
 {{/allKeyword}}
 <hr/>
-<a href="/craw/clear/{{keywordId}}?page={{prev}}">이전</a>
-<a href="/craw/clear/{{keywordId}}?page={{next}}">다음</a>
-<br/><br/>
+<ul class="pagination justify-content-center">
+    <li class="page-item"><a class="page-link" href="/craw/clear/{{keywordId}}?page={{prev}}">이전</a></li>
+    <li class="page-item"><a class="page-link" href="/craw/clear/{{keywordId}}?page={{next}}">다음</a></li>
+  </ul>
+<br/>
 <table border="1" >
 	<tr>
 		<th>번호</th>
 		<th>사진</th>
 		<th>제목</th>
 		<th>주소</th>
-		<th></th>
+		<th>삭제하기</th>
 	</tr>
 	{{#products}}
 	<tr id="product-{{id}}">
@@ -38,6 +32,8 @@
 	</tr>
 	{{/products}}
 </table>
+</div>
+
 <script>
 	function deleteById(id){
 		fetch("/craw/product/delete/"+id, {
@@ -50,6 +46,3 @@
 		});
 	}
 </script>
-
-</body>
-</html> 

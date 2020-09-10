@@ -1,17 +1,9 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<title>제품리뷰 관리자페이지</title>
-</head>
-<body>
-<ul>
-	<li><a href="/craw/list">크롤링키워드목록</a></li>
-	<li><a href="/craw/naver">전체크롤링</a></li>
-	<li><a href="/craw/clear">크롤링데이터 정리</a></li>
-</ul>
-<h1>네이버 크롤링하기</h1>
+{{>nav}}
+
+<br/><br/>
+<div class="container">
+<h2>네이버 크롤링하기</h2>
+<p><code>크롤링 할 키워드를 선택하세요.</code></p>
 <hr/>
 <form id="frm" style="margin-bottom:5px">
 	<select name="keyword">
@@ -20,7 +12,10 @@
 		{{/keywords}}
 	</select>
 </form>
-	<button onclick="crawNaver()">크롤링 시작</button>
+<br/>
+	<button class="btn btn-outline-success btn-sm" onclick="crawNaver()">크롤링 시작</button>
+</div>
+
 <script>
 
 	function crawNaver() {
@@ -41,5 +36,3 @@
 		});
 	}
 </script>
-</body>
-</html>

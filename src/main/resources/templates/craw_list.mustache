@@ -1,29 +1,29 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<title>제품리뷰 관리자페이지</title>
-</head>
-<body>
-<ul>
-	<li><a href="/craw/list">크롤링키워드목록</a></li>
-	<li><a href="/craw/naver">전체크롤링</a></li>
-	<li><a href="/craw/clear">크롤링데이터 정리</a></li>
-</ul>
-<h1>네이버 크롤링 키워드 등록 페이지</h1>
+{{>nav}}
+
+<br/><br/>
+<div class="container">
+<h2>네이버 크롤링 키워드 등록하기</h2>
+<p><code>크롤링 할 키워드를 입력하세요.</code></p>
 <hr/>
-<h3>현재 키워드</h3>
+<h4>현재 키워드</h4>
+<br/>
 <ol>
 	{{#keywords}}
-	<li>{{keyword}} <button onclick="deleteKeyword({{id}})">삭제</button></li>
+	<li> 
+		{{keyword}} 
+		<button onclick="deleteKeyword({{id}})" class="btn btn-outline-success btn-sm">삭제</button>
+	</li>
+	<br/>
 	{{/keywords}}
 </ol>
 <hr/>
+
 <form action="/craw/keyword/proc" method="post">
-	<input type="text" name="keyword" placeholder="키워드" style="margin-bottom:5px"/><br/>
-	<button>키워드 등록</button>
+	<input type="text" name="keyword" placeholder="키워드" style="margin-bottom:5px"/>
+	<button class="btn btn-outline-success btn-sm">키워드 등록</button>
 </form>
+</div>
+
 <script>
 	function deleteKeyword(id){
 		fetch("/craw/keyword/delete/"+id, {
@@ -36,5 +36,3 @@
 		});
 	}
 </script>
-</body>
-</html> 
